@@ -1,0 +1,174 @@
+basePath: /
+definitions:
+  models.ProductRequestDTO:
+    properties:
+      name:
+        type: string
+    type: object
+  models.UserLoginDTO:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  models.UserRegisterDTO:
+    properties:
+      email:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - firstname
+    - lastname
+    - password
+    - username
+    type: object
+info:
+  contact: {}
+  description: Boiler-Plate backend api documents
+  title: Boiler-Plate Backend Api
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      parameters:
+      - description: Register DTO
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserLoginDTO'
+      responses:
+        "200":
+          description: '{"success":true,"msg":"Success"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: User Login
+      tags:
+      - AuthApi
+  /auth/register:
+    post:
+      parameters:
+      - description: Register DTO
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserRegisterDTO'
+      responses:
+        "200":
+          description: '{"success":true,"msg":"Success"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: User Register
+      tags:
+      - AuthApi
+  /products:
+    get:
+      responses:
+        "200":
+          description: '{"success":true,"data":"","msg":"Success"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Get Product List
+      tags:
+      - ProductApi
+    post:
+      parameters:
+      - description: Product Request DTO
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.ProductRequestDTO'
+      responses:
+        "200":
+          description: '{"success":true,"msg":"Success"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Create Product
+      tags:
+      - ProductApi
+  /products/{id}:
+    delete:
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"success":true,"msg":"Success"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Product
+      tags:
+      - ProductApi
+    get:
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"success":true,"data":"","msg":"Success"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Get Product with ID
+      tags:
+      - ProductApi
+    put:
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Product Request DTO
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.ProductRequestDTO'
+      responses:
+        "200":
+          description: '{"success":true,"msg":"Success"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Update Product
+      tags:
+      - ProductApi
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

@@ -1,0 +1,10 @@
+system:
+  dbdriver: mysql
+  tokenexpirytime: 600
+  tokensecretkey: jj?igt1#44$hj$s
+db:
+  port: 3306
+  dbname: mydb
+  username: root
+  host: localhost
+  password: 1234
