@@ -6,5 +6,5 @@ db:
   port: 3306
   dbname: mydb
   username: root
-  host: localhost
+  host: db
   password: 1234

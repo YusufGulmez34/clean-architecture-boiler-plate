@@ -1,0 +1,20 @@
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_PASSWORD=1234
+      - MYSQL_DATABASE=mydb
+    ports:
+      - 3306:3306
+  app:
+    build: 
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    restart: always
+    
+

@@ -54,5 +54,5 @@ func main() {
 	productApi := echoapi.NewEchoProductApi(productService)
 	productApi.Register(e.Group("products", middlewareManager.AuthControl))
 
-	e.Start("localhost:5000")
+	e.Start(":5000")
 }

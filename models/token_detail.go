@@ -12,5 +12,5 @@ type TokenDetail struct {
 	Token      string    `gorm:"not null"`
 	ExpiryTime time.Time `gorm:"not null"`
 	UserID     uint      `gorm:"not null"`
-	User       User      `gorm:"constraint:onDelete:CASCADE onUpdete:CASCADE"`
+	User       User      `gorm:"constraint:onDelete:CASCADE, onUpdate:CASCADE"`
 }
