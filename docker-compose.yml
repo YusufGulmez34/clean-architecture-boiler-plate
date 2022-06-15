@@ -1,12 +1,18 @@
 services:
   db:
-    image: mysql
+    image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=1234
       - MYSQL_PASSWORD=1234
       - MYSQL_DATABASE=mydb
     ports:
       - 3306:3306
+    volumes:
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "-u", "root", "-p1234", "ping", "-h", "localhost"]
+      interval: 1s
+      retries: 20
   app:
     build: 
       dockerfile: Dockerfile
@@ -14,7 +20,8 @@ services:
     ports:
       - 5000:5000
     depends_on:
-      - db
+      db:
+       condition: service_healthy
     restart: always
-    
-
+volumes:
+   dbdata:
